@@ -1,0 +1,16 @@
+[project]
+name = "secunda-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "geoalchemy2>=0.18.3",
+    "phonenumbers>=9.0.24",
+    "sqlalchemy>=2.0.46",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.10.0",
+]
