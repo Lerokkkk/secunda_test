@@ -1,0 +1,29 @@
+services:
+  backend_postgres:
+    image: postgis/postgis:17-master
+    container_name: backend_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: secunda
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: secunda_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+volumes:
+  pgdata:
+
+networks:
+  backend_network:
+    name: backend_network
+    driver: bridge

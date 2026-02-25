@@ -1,7 +1,8 @@
+from dataclasses import dataclass
 from domain.exceptions.building import LatitudeException, LongitudeException
 from domain.value_objects.base import BaseValueObject
 
-
+@dataclass(frozen=True)
 class Coordinates(BaseValueObject):
     latitude: float
     longitude: float

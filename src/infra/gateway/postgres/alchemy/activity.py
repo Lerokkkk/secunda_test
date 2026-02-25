@@ -1,4 +1,5 @@
-from infra.gateway.postgres.alchemy.base import mapper_registry
+from domain.entities.activity import Activity
+from .base import mapper_registry
 from uuid import uuid4
 import sqlalchemy as sa
 
@@ -14,4 +15,12 @@ ACTIVITY_TABLE = sa.Table(
         sa.ForeignKey("activities.id", ondelete="CASCADE"),
         nullable=True,
     ),
+)
+
+mapper_registry.map_imperatively(
+    Activity,
+    ACTIVITY_TABLE,
+    properties={
+        "oid": ACTIVITY_TABLE.c.id,
+    }
 )

@@ -10,4 +10,4 @@ class Organization(Entity):
     title: str
     phone: list[PhoneNumber]
     building_id: uuid.UUID
-    activity_ids: list[uuid.UUID]
+    activity_ids: list[uuid.UUID] = field(default_factory=list)

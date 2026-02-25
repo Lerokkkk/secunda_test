@@ -1,8 +1,12 @@
+from dataclasses import dataclass
+from uuid import UUID
 import phonenumbers
-from domain.exceptions.activity import NumberParseException
-from domain.value_objects.base import ValueObject
+
+from domain.exceptions.organization import NumberParseException
+from domain.value_objects.base import BaseValueObject, ValueObject
 
 
+@dataclass(frozen=True)
 class PhoneNumber(ValueObject[str]):
     value: str
 
