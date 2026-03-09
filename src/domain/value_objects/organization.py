@@ -6,7 +6,6 @@ from domain.exceptions.organization import NumberParseException
 from domain.value_objects.base import BaseValueObject, ValueObject
 
 
-@dataclass(frozen=True)
 class PhoneNumber(ValueObject[str]):
     value: str
 

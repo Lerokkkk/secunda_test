@@ -16,5 +16,5 @@ class Activity(Entity):
         if parent and parent.level >= 3:
             raise ActivityHierarchyTooDeep(parent.level)
         return cls(
-            title=title, parent_id=parent.oid, level=(parent.level + 1) if parent else 1
+            title=title, parent_id=parent.oid if parent else None, level=(parent.level + 1) if parent else 1
         )

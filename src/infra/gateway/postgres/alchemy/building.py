@@ -13,11 +13,14 @@ class CoordinatesType(sa.TypeDecorator):
     impl = Geography("POINT", srid=4326)
     cache_ok = True
 
+    def column_expression(self, col):
+        return getattr(sa.func, self.impl.as_binary)(col, type_=self)
+
     def process_bind_param(self, value: Coordinates | None, dialect):
         if value is None:
             return None
         return from_shape(Point(value.longitude, value.latitude), srid=4326)
-    
+
     def process_result_value(self, value, dialect) -> Coordinates | None:
         if value is None:
             return None

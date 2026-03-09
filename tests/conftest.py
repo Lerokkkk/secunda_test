@@ -15,7 +15,7 @@ def settings() -> Settings:
 
 @pytest_asyncio.fixture(scope="session", autouse=True)
 async def engine(settings: Settings):
-    engine = create_async_engine(settings.test_pg_dsn, echo=True)
+    engine = create_async_engine(settings.test_pg_dsn, echo=False)
     async with engine.begin() as conn:
         await conn.run_sync(mapper_registry.metadata.create_all)
     yield engine

@@ -14,7 +14,7 @@ services:
     networks:
       - backend_network
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
+      test: ["CMD", "pg_isready", "-U", "secunda", "-d", "secunda_db"]
       interval: 5s
       timeout: 5s
       retries: 10

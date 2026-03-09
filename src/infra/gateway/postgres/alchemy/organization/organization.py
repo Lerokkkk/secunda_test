@@ -43,6 +43,7 @@ mapper_registry.map_imperatively(
         "phone": sa.orm.relationship(
             PhoneNumber,
             cascade="all, delete-orphan",
+            lazy="selectin"
         )
     },
 )

@@ -1,15 +1,19 @@
-# tests/test_orm.py
-from sqlalchemy import text
+import pytest_asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from domain.entities.building import Building
 from domain.value_objects.building import Coordinates
 
 
-async def test_building_mapper(session: AsyncSession):
+@pytest_asyncio.fixture
+async def building(session: AsyncSession) -> Building:
     building = Building(
         address="ул. Ленина 1",
         location=Coordinates(latitude=55.75, longitude=37.61),
     )
-    res = (await session.execute(text("SELECT * FROM buildings"))).all()
-    print(res)
+
+    session.add(building)
+    await session.flush()
+    return building
+    
+    
